@@ -1,0 +1,32 @@
+<app-nav-menu-after-login username="{{usernamebind}}"></app-nav-menu-after-login>
+
+<div class="container mt-3">
+<table class="table table-bordered">
+
+<thead>
+  <th>
+    Order Id
+  </th>
+  <th>
+    Product Details
+  </th>
+  <th>
+    Delivery status
+  </th>
+</thead>
+<tbody>
+  <tr *ngFor="let item of orderDetails">
+<td>
+  {{item.OrderId}}
+</td>
+<td>
+  <p (click)="ShowCompleteDetails(item.OrderId)" style="color:rebeccapurple">click here to see product details</p>
+</td>
+<td style="color:{{item.DeliveryStatus=='Delivered'?'green':'red'}} ">
+  {{item.DeliveryStatus}}
+</td>
+  </tr>
+</tbody>
+
+
+</table></div>

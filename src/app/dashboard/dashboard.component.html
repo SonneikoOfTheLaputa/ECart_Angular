@@ -1,0 +1,143 @@
+<style>
+    #cartCheckoutBtn{
+  margin:auto;
+  display:block;
+}
+
+/* BUTTON STYLES */
+#cartCheckoutBtn{
+  padding:16px 32px;
+  font-family:helvetica;
+  font-size:16px;
+  font-weight:100;
+  color:#fff;
+  background: #587286;
+  border:0;
+  font-weight:100;
+}
+#cartCheckoutBtn:hover{
+  background: #3B5C76;
+}
+    	
+@import url(https://fonts.googleapis.com/css?family=Calibri:400,300,700);
+    .pricing-area {
+        padding: 3% 0;
+        text-align: center;
+    }
+
+    .single-pricing {
+        background: #fcfcfc;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        transition: all .5s ease;
+    }
+
+    .deal-type {
+        background: linear-gradient(to bottom, #ff512f, #f09819);
+        padding: 15px 0;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 2px;
+        color: #fff;
+    }
+
+    .deal-amount {
+        clip-path: polygon(0 0, 100% 0%, 100% 60%, 51% 100%, 0 60%);
+        background: linear-gradient(to right, #ff512f, #f09819);
+        padding: 25px 0;
+        color: #fff;
+    }
+
+    .price .money {
+        font-size: 60px;
+        font-weight: 900;
+    }
+
+        .price .money sup {
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+    .single-deal {
+        padding: 15px 0;
+        list-style: none;
+    }
+
+        .single-deal li {
+            font-size: 18px;
+            font-family: montserrat;
+            /*padding: 10px 0;*/
+        }
+
+    .btn1 {
+        background: linear-gradient(to right, #ff512f, #f09819);
+        border: none;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        padding: 10px 50px;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        right: 0;
+    }
+
+    .single-pricing:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 767px) {
+        .single-pricing {
+            margin-bottom: 30px;
+        }
+    }
+
+</style>
+
+<app-nav-menu-after-login username="{{usernameFromSession}}"></app-nav-menu-after-login>
+
+<div>
+    <button id="cartCheckoutBtn" (click)="Proceedtocart()">Proceed to checkout cart</button>
+  </div>
+
+  <div class="pricing-area" >
+    <div class="container">
+        <div class="row">
+          
+
+                <div class="col-lg-3" *ngFor="let item of products">
+                    <div class="single-pricing">
+                        <img src="data:image/gif;base64,{{item.ProductDetails}}" style="height:250px;width:200px" alt="{{item.ProductId}}" />
+                        <div class="deal-type" style="height:75px">{{item.ProductName}}</div>
+                        <div class="deal-amount" style="height:150px">
+                            <div class="price">
+                                <span class="money"><sup>₹</sup>{{item.ProductPrice}}</span>
+                            </div>
+
+                        </div>
+                        <div class="desc" style="height:50px">
+                            <p (click)="OpenDescWindow(item)" style="color:blue;text-decoration:underline">Click here for description</p>
+                        </div>
+                        <ul class="single-deal" style="height:75px" >
+
+                                <li *ngIf="ConvertToNumber(item.ProductQuantity)>0">Available : {{item.ProductQuantity}}</li>
+                            
+
+                        </ul>
+                            <a *ngIf="ConvertToNumber(item.ProductQuantity)<=0" class="btn1" style="height:50px;" (click)="NotifyUser(item)">Notify me</a>
+                        
+                       
+                            <div *ngIf="ConvertToNumber(item.ProductQuantity)>0" class="cartAddons" style="bottom:0;height:50px;">
+                                <i class="fa fa-plus" style="float:left" (click)="AddItem(item)"></i>
+                                <b style="display:{{item.inCartDisplay}}"><strong>Cart : {{item.inCart}}</strong></b>
+                                <i class="fa fa-minus" style="float:right" (click)="RemoveItem(item)"></i>
+                            </div>
+                        
+                    </div>
+                </div>
+
+
+            
+        </div>
+    </div>
+</div>

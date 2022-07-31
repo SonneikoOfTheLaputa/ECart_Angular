@@ -1,0 +1,52 @@
+<app-nav-menu-after-login username="{{usernamebind}}"></app-nav-menu-after-login>
+
+<label>
+    Shipping Address
+</label>
+<input type="text" disabled [(ngModel)]="orderDetails.ShippingDetails"/><br/>
+<label>
+    Delivery status
+</label>
+<input type="text" disabled [(ngModel)]="orderDetails.DeliveryStatus"/><br/>
+<label>
+    Total amount
+</label>
+<input type="text" disabled [(ngModel)]="orderDetails.TotalPrice"/><br/>
+<label>
+    Email address
+</label>
+<input type="text" disabled [(ngModel)]="orderDetails.EmailAddress"/><br/>
+<label>
+   Order Id
+</label>
+<input type="text" disabled [(ngModel)]="orderDetails.OrderId"/><br/>
+
+<div class="container mt-3">
+    <table class="table table-bordered">
+
+    <thead>
+<th>
+    Product Names
+</th>
+<th>
+    Product Counts
+</th>
+<th>
+    Product Prices
+</th>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of orderDetails.ProductOrderDetailsObj">
+<td>
+{{item.ProductName}}
+</td>
+<td>
+    {{item.ProductCount}}
+    </td>
+    <td>
+        {{item.ProductPrice}}
+        </td>
+        </tr>
+    </tbody>
+</table></div>
